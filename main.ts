@@ -1,5 +1,5 @@
 input.onButtonPressed(Button.A, function () {
-    Pacman.move(1)
+	
 })
 function ghostPink () {
     if (Pinky.get(LedSpriteProperty.X) < Pacman.get(LedSpriteProperty.X)) {
@@ -29,7 +29,7 @@ function gameLogic () {
     pacdot.set(LedSpriteProperty.Blink, 8)
 }
 input.onButtonPressed(Button.B, function () {
-    Pacman.turn(Direction.Right, 90)
+	
 })
 let pacdot: game.LedSprite = null
 let Pinky: game.LedSprite = null
@@ -43,4 +43,13 @@ game.startCountdown(60000)
 basic.forever(function () {
     ghostPink()
     gameLogic()
+    if (input.acceleration(Dimension.X) > 100) {
+        Pacman.change(LedSpriteProperty.X, 1)
+    } else if (input.acceleration(Dimension.X) < -100) {
+        Pacman.change(LedSpriteProperty.X, -1)
+    } else if (input.acceleration(Dimension.Y) > 100) {
+        Pacman.change(LedSpriteProperty.Y, 1)
+    } else if (input.acceleration(Dimension.Y) < -100) {
+        Pacman.change(LedSpriteProperty.Y, -1)
+    }
 })
